@@ -109,7 +109,8 @@ void createVertex(void) {
      * stride : 步长，顶点属性之间的间隔
      * pointer :
      */
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(0);
 }
 
 unsigned int compileVertexShader(void) {
