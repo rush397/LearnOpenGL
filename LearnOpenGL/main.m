@@ -100,9 +100,19 @@ void createVertex(void) {
      * TODO: 举例说明？
      */
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    
+    /*
+     * index : 顶点属性的位置
+     * size : 顶点属性的大小，顶点属性是 vec3，由3个值组成，所以是3
+     * type : 顶点数据类型
+     * normalize : 是否希望数据被标准化
+     * stride : 步长，顶点属性之间的间隔
+     * pointer :
+     */
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0)
 }
 
-void compileVertexShader(void) {
+unsigned int compileVertexShader(void) {
     /*
      * version 330 : GLSL 版本号需要喝 OpenGL 版本号匹配
      * core : 使用核心模式
@@ -137,9 +147,11 @@ void compileVertexShader(void) {
         glGetShaderInfoLog(vertexShader, sizeof(infoLog), NULL, infoLog);
         printf("ERROR::SHADER::VERTEX::COMPILATION_FAILED %s\n", infoLog);
     }
+    
+    return vertexShader;
 }
 
-void compileFragmentShader(void) {
+unsigned int compileFragmentShader(void) {
     /*
      * version 330 : GLSL 版本号需要喝 OpenGL 版本号匹配
      * core : 使用核心模式
@@ -155,6 +167,50 @@ void compileFragmentShader(void) {
         FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0);\
     }\
     ";
+    
+    // 编译片段着色器
+    unsigned int fragmentShader;
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    glCompileShader(fragmentShader);
+    
+    // 检测编译是否有错误
+    int success;
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        char infoLog[512];
+        glGetShaderInfoLog(fragmentShader, sizeof(infoLog), NULL, infoLog);
+        printf("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED %s\n", infoLog);
+    }
+    
+    return fragmentShader;
+}
+
+void createShaderProgram(void) {
+    unsigned int vertexShader = compileVertexShader();
+    unsigned int fragmentShader = compileFragmentShader();
+    
+    unsigned int shaderProgram;
+    shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
+    
+    // 检测链接是否有错误
+    int success;
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        char infoLog[512];
+        glGetProgramInfoLog(shaderProgram, sizeof(infoLog), NULL, infoLog);
+        printf("ERROR::PROGRAM::SHADER::LINK_FAILED %s\n", infoLog);
+    }
+    
+    // 调用 glUseProgram 之后，每个着色器调用和渲染调用都会使用这个程序对象
+    glUseProgram(shaderProgram);
+    
+    // 着色器对象链接到程序之后，就不再需要了
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
 }
 
 void render(void) {
