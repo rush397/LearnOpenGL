@@ -29,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06D14D7B1FDA26E800150015 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		06E9C4891FD8DCC8008E2303 /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		06E9C48C1FD8DCC8008E2303 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06E9C4931FD8DEC0008E2303 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		06E9C48B1FD8DCC8008E2303 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				06D14D7B1FDA26E800150015 /* README.md */,
 				06E9C49F1FD8E169008E2303 /* glad */,
 				06E9C4931FD8DEC0008E2303 /* libglfw3.a */,
 				06E9C48C1FD8DCC8008E2303 /* main.m */,
