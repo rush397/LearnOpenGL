@@ -38,6 +38,8 @@
 		06E9C4991FD8DEFF008E2303 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		06E9C49B1FD8DF12008E2303 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		06E9C4A61FD8E169008E2303 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		A897F8701FDCF2A100582B10 /* khrplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = khrplatform.h; sourceTree = "<group>"; };
+		A897F8721FDCF2A100582B10 /* glad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glad.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,8 @@
 		06E9C49F1FD8E169008E2303 /* glad */ = {
 			isa = PBXGroup;
 			children = (
+				A897F8711FDCF2A100582B10 /* glad */,
+				A897F86F1FDCF2A100582B10 /* KHR */,
 				06E9C4A51FD8E169008E2303 /* src */,
 			);
 			path = glad;
@@ -109,6 +113,22 @@
 				06E9C4A61FD8E169008E2303 /* glad.c */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		A897F86F1FDCF2A100582B10 /* KHR */ = {
+			isa = PBXGroup;
+			children = (
+				A897F8701FDCF2A100582B10 /* khrplatform.h */,
+			);
+			path = KHR;
+			sourceTree = "<group>";
+		};
+		A897F8711FDCF2A100582B10 /* glad */ = {
+			isa = PBXGroup;
+			children = (
+				A897F8721FDCF2A100582B10 /* glad.h */,
+			);
+			path = glad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +304,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(PROJECT_DIR)/LearnOpenGL/glad",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					"$(PROJECT_DIR)/LearnOpenGL",
@@ -299,7 +322,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(PROJECT_DIR)/LearnOpenGL/glad",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					"$(PROJECT_DIR)/LearnOpenGL",
